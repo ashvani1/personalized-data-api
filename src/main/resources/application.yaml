@@ -1,0 +1,22 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: PERSONALIZED-DATA-API
+  datasource:
+    url: jdbc:mysql://localhost:3306/personalizedapi        #local mysql
+    username: root
+    #password: root
+    password: password123   #local mysql password
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+  cloud:
+    config:
+      enabled: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
