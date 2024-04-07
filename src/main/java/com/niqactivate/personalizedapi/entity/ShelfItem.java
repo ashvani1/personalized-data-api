@@ -15,7 +15,7 @@ public class ShelfItem {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "shopperProductId")
+    @JoinColumn(name = "shopper_product_list_id")
     private ShopperProductList shopperProductList;
 
     private String productId;
