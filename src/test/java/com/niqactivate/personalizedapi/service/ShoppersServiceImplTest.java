@@ -6,7 +6,7 @@ import com.niqactivate.personalizedapi.entity.ShopperProductList;
 import com.niqactivate.personalizedapi.repository.ProductMetadataRepository;
 import com.niqactivate.personalizedapi.repository.ShelfItemRepository;
 import com.niqactivate.personalizedapi.repository.ShopperProductListRepository;
-import com.niqactivate.personalizedapi.services.ShoppersService;
+import com.niqactivate.personalizedapi.services.ShoppersServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -15,12 +15,11 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class ShoppersServiceTest {
+public class ShoppersServiceImplTest {
 
     @Mock
     private ShopperProductListRepository shopperProductListRepository;
@@ -32,7 +31,7 @@ public class ShoppersServiceTest {
     private ProductMetadataRepository productMetadataRepository;
 
     @InjectMocks
-    private ShoppersService shoppersService;
+    private ShoppersServiceImpl shoppersServiceimpl;
 
     @BeforeEach
     public void setup() {
@@ -65,7 +64,7 @@ public class ShoppersServiceTest {
         when(productMetadataRepository.findByProductId("P-1001")).thenReturn(product);
 
         // Calling the service method
-        List<Product> result = shoppersService.getProductsByShopperId(shopperId, category, brand, limit);
+        List<Product> result = shoppersServiceimpl.getProductsByShopperId(shopperId, category, brand, limit);
 
         // Verifying the result
         assertEquals(1, result.size());

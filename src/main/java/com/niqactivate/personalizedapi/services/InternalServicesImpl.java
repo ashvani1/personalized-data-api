@@ -6,6 +6,7 @@ import com.niqactivate.personalizedapi.entity.ShopperProductList;
 import com.niqactivate.personalizedapi.repository.ProductMetadataRepository;
 import com.niqactivate.personalizedapi.repository.ShelfItemRepository;
 import com.niqactivate.personalizedapi.repository.ShopperProductListRepository;
+import com.niqactivate.personalizedapi.services.interfaces.InternalServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class InternalService {
+public class InternalServicesImpl implements InternalServices {
     @Autowired
     private ShopperProductListRepository shopperProductListRepository;
     @Autowired
@@ -22,6 +23,7 @@ public class InternalService {
     @Autowired
     private ProductMetadataRepository productRepository;
 
+    @Override
     public void saveShopperProductList(ShopperProductList request) {
         ShopperProductList shopperProductList = new ShopperProductList();
         shopperProductList.setShopperId(request.getShopperId());
@@ -42,7 +44,7 @@ public class InternalService {
         // Save the shelf items
         shelfItemRepository.saveAll(shelfItems);
     }
-
+    @Override
     public void saveProduct(Product product) {
         productRepository.save(product);
     }

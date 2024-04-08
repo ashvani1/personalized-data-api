@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.niqactivate.personalizedapi.entity.Product;
 import com.niqactivate.personalizedapi.exception.ProductNotFoundException;
-import com.niqactivate.personalizedapi.services.ShoppersService;
+import com.niqactivate.personalizedapi.services.ShoppersServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -21,7 +21,7 @@ public class ShoppersControllerTest {
     private ShoppersController shoppersController;
 
     @Mock
-    private ShoppersService shoppersService;
+    private ShoppersServiceImpl shoppersServiceimpl;
 
     @BeforeEach
     public void setup() {
@@ -30,13 +30,13 @@ public class ShoppersControllerTest {
 
     @Test
     public void testGetProductsByShopperId() {
-        // Mocking the behavior of the shoppersService
+        // Mocking the behavior of the shoppersServiceimpl
         String shopperId = "123";
         String categoryId = "1";
         String brand = "Nike";
         int limit = 10;
         List<Product> mockedProducts = Collections.singletonList(new Product());
-        when(shoppersService.getProductsByShopperId(shopperId, categoryId, brand, limit)).thenReturn(mockedProducts);
+        when(shoppersServiceimpl.getProductsByShopperId(shopperId, categoryId, brand, limit)).thenReturn(mockedProducts);
 
         // Calling the controller method
         List<Product> result = shoppersController.getProductsByShopperId(shopperId, categoryId, brand, limit);
@@ -47,12 +47,12 @@ public class ShoppersControllerTest {
 
     @Test
     public void testGetProductsByShopperId_ProductNotFoundException() {
-        // Mocking the behavior of the shoppersService to return an empty list
+        // Mocking the behavior of the shoppersServiceimpl to return an empty list
         String shopperId = "123";
         String categoryId = "1";
         String brand = "Nike";
         int limit = 10;
-        when(shoppersService.getProductsByShopperId(shopperId, categoryId, brand, limit)).thenReturn(Collections.emptyList());
+        when(shoppersServiceimpl.getProductsByShopperId(shopperId, categoryId, brand, limit)).thenReturn(Collections.emptyList());
 
         // Calling the controller method and expecting ProductNotFoundException
         assertThrows(ProductNotFoundException.class, () -> {
